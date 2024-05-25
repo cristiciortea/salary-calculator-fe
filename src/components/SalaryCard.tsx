@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import CalculatorResults from './CalculatorResults';
+import InputWithCurrency from './reusable/CalculatorInput';
 
 function SalaryCard() {
   const [activeTab, setActiveTab] = useState('Net Salary');
+  const [salary, setSalary] = useState<string>('');
 
   return (
     <div className="bg-white text-green-600 border border-green-300 shadow-lg rounded-lg p-6 my-8 mx-10">
+      <p>{salary}</p>
       <div role="tablist" className="tabs tabs-lifted">
         <button
           role="tab"
@@ -34,23 +37,31 @@ function SalaryCard() {
 
       <div className="mt-6 space-y-4">
         {activeTab === 'Net Salary' && (
-          <div>
-            <h2 className="text-gray-900 text-lg font-semibold mb-4">Calcul Salariu Net</h2>
-            <input type="number" placeholder="Salariu Brut" className="input input-bordered w-full mb-4" />
-          </div>
+          <InputWithCurrency
+            title="Calcul Salariu Net"
+            placeholder="Salariu Brut"
+            salary={salary}
+            setSalary={setSalary}
+          />
         )}
 
         {activeTab === 'Brute Salary' && (
-          <div>
-            <h2 className="text-gray-900 text-lg font-semibold mb-4">Calcul Salariu Brut</h2>
-            <input type="number" placeholder="Salariu Net" className="input input-bordered w-full mb-4" />
-          </div>
+          <InputWithCurrency
+            title="Calcul Salariu Brut"
+            placeholder="Salariu Net"
+            salary={salary}
+            setSalary={setSalary}
+          />
         )}
 
         {activeTab === 'Custom Salary' && (
-          <div>
-            <h2 className="text-gray-900 text-lg font-semibold mb-4">Calcul Salariu Flexibil</h2>
-            <input type="number" placeholder="Enter Custom Value" className="input input-bordered w-full mb-4" />
+          <div className="mt-6 space-y-4">
+            <InputWithCurrency
+              title="Calcul Salariu Flexibil"
+              placeholder="Salariu Brut"
+              salary={salary}
+              setSalary={setSalary}
+            />
             <input type="number" placeholder="Enter Tax Rate (%)" className="input input-bordered w-full mb-4" />
           </div>
         )}
