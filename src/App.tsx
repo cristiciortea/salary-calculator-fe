@@ -5,10 +5,10 @@ import SalaryCard from './components/SalaryCard';
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-t from-green-100 via-teal-400 to-cyan-600">
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-[#0a493a] to-[#0b5e4c] overflow-hidden">
       <NavBar />
-      <main className="flex-grow mt-20 pt-10">
-        <p className="text-slate-500">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <main className="flex-grow mt-5">
+        <p className="text-gray-300">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
         <SalaryCard />
       </main>
       <Footer />
