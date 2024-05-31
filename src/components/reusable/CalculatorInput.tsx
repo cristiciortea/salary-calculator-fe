@@ -1,36 +1,31 @@
-const numRegex = /^\d{0,9}\.?\d{0,3}$/;
+import { stringInputCallable, createNumOnlyInputChangeHandler } from '../../Utils';
 
 type InputWithCurrencyProps = {
   title: string;
   placeholder: string;
   salary: string;
-  setSalary: (newValue: string) => void;
+  setSalary: stringInputCallable;
 };
 
 function InputWithCurrency({ title, placeholder, salary, setSalary }: InputWithCurrencyProps) {
   const currencies = ['LEI', 'EUR', 'USD'];
   const defaultCurrency = 'LEI';
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.currentTarget.value;
-    if (numRegex.test(inputValue)) {
-      setSalary(inputValue);
-    }
-  };
+  const handleInputChange = createNumOnlyInputChangeHandler(setSalary);
 
   return (
-    <div>
-      <h2 className="text-gray-900 text-lg font-semibold mb-4">{title}</h2>
+    <div className="flex flex-col">
+      <h2 className="text-teal-800 text-lg font-semibold mb-4 self-start">{title}</h2>
 
-      <div className="relative">
+      <div className="flex flex-row flex-wrap">
         <input
           type="text"
           placeholder={placeholder}
-          className="input input-bordered w-full"
+          className="input input-bordered basis-10/12"
           onChange={handleInputChange}
           value={salary}
         />
 
-        <div className="absolute inset-y-0 right-0 flex items-center">
+        <div className="inset-y-0 right-0">
           <label htmlFor="currency" className="sr-only">
             Currency
           </label>

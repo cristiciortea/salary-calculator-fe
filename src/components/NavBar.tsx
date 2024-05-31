@@ -1,4 +1,6 @@
 import mainLogo from '../assets/main_logo.png';
+import { ACTIVE_DROP_DOWN_ITEMS, NONACTIVE_DROP_DOWN_ITEMS } from '../constants/NavBar';
+import DropdownMenu from './reusable/DropdownMenu';
 
 function NavBar() {
   return (
@@ -19,30 +21,26 @@ function NavBar() {
                   className="block h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeLinejoin="inherit"
                   stroke="currentColor"
                   aria-hidden="true"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
                 <svg
                   className="hidden h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   aria-hidden="true"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex flex-1 items-center justify-center justify-evenly sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                 <img className="h-8 w-8" src={mainLogo} alt="Logo" />
               </div>
@@ -50,15 +48,17 @@ function NavBar() {
               <div className="hidden sm:block sm:ml-6 text-white">
                 <div className="flex space-x-4">
                   <a href="#" className="hover:bg-emerald-800 rounded-md px-3 py-2 text-sm font-medium">
-                    Home
+                    Acasa
                   </a>
 
-                  <a href="#" className="hover:bg-emerald-800 rounded-md px-3 py-2 text-sm font-medium">
-                    About
-                  </a>
+                  <DropdownMenu
+                    menuTitle="Alte Calculatoare"
+                    activeItems={ACTIVE_DROP_DOWN_ITEMS}
+                    disabledItems={NONACTIVE_DROP_DOWN_ITEMS}
+                  />
 
                   <a href="#" className="hover:bg-emerald-800 rounded-md px-3 py-2 text-sm font-medium">
-                    Contact
+                    Despre noi
                   </a>
                 </div>
               </div>
