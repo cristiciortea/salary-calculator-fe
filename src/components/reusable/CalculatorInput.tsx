@@ -1,16 +1,21 @@
 import { stringInputCallable, createNumOnlyInputChangeHandler } from '../../Utils';
+import { Currency, available_currencies } from '../../constants/CalculatorInput';
 
 type InputWithCurrencyProps = {
   title: string;
   placeholder: string;
   salary: string;
   setSalary: stringInputCallable;
+  currency: Currency;
+  setCurrency: (currency: Currency) => void;
 };
 
-function InputWithCurrency({ title, placeholder, salary, setSalary }: InputWithCurrencyProps) {
-  const currencies = ['LEI', 'EUR', 'USD'];
-  const defaultCurrency = 'LEI';
+function InputWithCurrency({ title, placeholder, salary, setSalary, currency, setCurrency }: InputWithCurrencyProps) {
   const handleInputChange = createNumOnlyInputChangeHandler(setSalary);
+  const handleOnCurrencySelect = (event: any) => {
+    const currentValue = event.currentTarget.value;
+    setCurrency(currentValue);
+  };
 
   return (
     <div className="flex flex-col">
@@ -33,10 +38,11 @@ function InputWithCurrency({ title, placeholder, salary, setSalary }: InputWithC
           <select
             id="currency"
             name="currency"
-            defaultValue={defaultCurrency}
+            defaultValue={currency}
             className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 font-semibold focus:ring-2 focus:ring-inset focus:ring-gray-300 sm:text-sm"
+            onChange={handleOnCurrencySelect}
           >
-            {currencies.map((currency, index) => (
+            {available_currencies.map((currency, index) => (
               <option key={index} value={currency}>
                 {currency}
               </option>

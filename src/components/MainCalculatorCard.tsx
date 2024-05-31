@@ -2,10 +2,12 @@ import { useState } from 'react';
 import CalculatorResults from './CalculatorResults';
 import InputWithCurrency from './reusable/CalculatorInput';
 import { createNumOnlyInputChangeHandler } from '../Utils';
+import { Currency, defaultCurrency } from '../constants/CalculatorInput';
 
 function MainCalculatorCard() {
   const [activeTab, setActiveTab] = useState('Net Salary');
   const [salary, setSalary] = useState<string>('');
+  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
   const [customTax, setCustomTax] = useState<string>('');
 
   const handleCustomTaxChange = createNumOnlyInputChangeHandler(setCustomTax);
@@ -47,6 +49,8 @@ function MainCalculatorCard() {
             placeholder="Salariu Brut"
             salary={salary}
             setSalary={setSalary}
+            currency={currency}
+            setCurrency={setCurrency}
           />
         )}
 
@@ -57,6 +61,8 @@ function MainCalculatorCard() {
             placeholder="Salariu Net"
             salary={salary}
             setSalary={setSalary}
+            currency={currency}
+            setCurrency={setCurrency}
           />
         )}
 
@@ -68,6 +74,8 @@ function MainCalculatorCard() {
               placeholder="Salariu Brut"
               salary={salary}
               setSalary={setSalary}
+              currency={currency}
+              setCurrency={setCurrency}
             />
             <input
               type="string"
